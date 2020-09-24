@@ -1,5 +1,5 @@
 library(ggplot2)
-library(ggpubr)
+library(egg)
 
 dat <- read.csv('Rome.csv',header=T)
 
@@ -26,4 +26,4 @@ rome <- ggplot(dat) +
   
 
 
-ggarrange(rome, rome, ncol = 1, nrow = 2)
+ggarrange(rome, rome, ncol = 1, nrow = 2, labels=c('Rome','Teotihuacan'))
