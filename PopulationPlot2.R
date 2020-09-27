@@ -3,7 +3,8 @@ library(egg)
 
 dat.rome <- read.csv('Rome.csv',header=T)
 dat.london <- read.csv('London.csv',header=T)
-dat.london1 <- dat.london[1:16,]
+dat.london1 <- dat.london[1:17,]
+dat.london2 <- dat.london[18:nrow(dat.london),]
 dat.teo <- read.csv('Teo.csv',header=T)
 
 rome <- ggplot(dat.rome) + 
@@ -36,9 +37,17 @@ london <- ggplot(dat.london1) +
   annotate("rect", xmin = 400, xmax = 410, ymin = -Inf, ymax = Inf, fill = "orange1", alpha = 0.6) +
   annotate("text", label="Abaondonment of Londinium", x = 430, y =95000, color="orange1", angle=270, hjust=0) +
   annotate("rect", xmin = 600, xmax = 610, ymin = -Inf, ymax = Inf, fill = "orange1", alpha = 0.6) +
-  annotate("text", label="Establishment of Anglo-Saxon Lundenwic", x = 630, y =95000, color="orange1", angle=270, hjust=0) +
+  annotate("text", label="Anglo-Saxon Lundenwic", x = 630, y =95000, color="orange1", angle=270, hjust=0) +
   annotate("rect", xmin = 1066, xmax = 1076, ymin = -Inf, ymax = Inf, fill = "orange1", alpha = 0.6) +
   annotate("text", label="Norman London", x = 1096, y =95000, color="orange1", angle=270, hjust=0) 
+
+london2 <- ggplot(dat.london2) + 
+  geom_line(aes(x = Year, y = Population), size = 1.5, color='turquoise4') +
+  theme(panel.grid.major.y = element_line('darkgray', size=0.25), panel.grid.minor.y=element_blank(), panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank(), 
+        panel.background = element_rect(fill = "#2D2D2D"), axis.line = element_line(color='white', size = 1, linetype = "solid")) +
+  scale_x_continuous(name="Year", limits=c(-1000, 2020), breaks=c(-1000,-500,0,500,1000,1500,2000),labels=c("1000 BC", "500 BC", "BC/AD","AD 500", "AD 1000","AD 1500","AD 2000")) +
+  scale_y_continuous(name="Population in Millions", limits=c(100000,10000000), breaks=c(100000,2500000,5000000,7500000,10000000), labels=c(0.1,2.5,5,7.5,10)) 
+
 
 teo <- ggplot(dat.teo) +
   geom_line(aes(x = Year, y = Population), size = 1.5, color='turquoise4') +
@@ -55,4 +64,4 @@ teo <- ggplot(dat.teo) +
   annotate("rect", xmin = 1521, xmax = 1531, ymin = -Inf, ymax = Inf, fill = "orange1", alpha = 0.6) +
   annotate("text", label="Spanish conquest", x = 1551, y =110000, color="orange1", angle=270, hjust=0) 
 
-ggarrange(rome, teo, london, ncol = 1, nrow = 3, labels=c('Rome','Teo','London'))
+ggarrange(rome, teo, london, london2, teo, ncol = 1, nrow = 5, labels=c('Rome','Teo','London','London', 'Teo'))
