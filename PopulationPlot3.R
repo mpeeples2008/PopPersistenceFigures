@@ -1,5 +1,6 @@
 library(ggplot2)
 library(ggpubr)
+library(ggformula)
 
 dat.rome <- read.csv('Rome.csv',header=T)
 dat.london <- read.csv('London.csv',header=T)
@@ -12,7 +13,7 @@ dat.byz2 <- dat.byz[21:nrow(dat.byz),]
 dat.mex <- read.csv('MexicoCity.csv',header=T)
 
 rome <- ggplot(dat.rome) + 
-  geom_line(aes(x = Year, y = Population), size = 1.5, color='turquoise4') +
+  geom_spline(aes(x = Year, y = Population), size = 1.5, color='turquoise4', stat='spline') +
   theme(panel.grid.major.y = element_line('darkgray', size=0.25), panel.grid.minor.y=element_blank(), panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank(), 
         panel.background = element_rect(fill = "#2D2D2D"), axis.line = element_line(color='white', size = 1, linetype = "solid")) +
   scale_x_continuous(name="Year", limits=c(-1000, 2020), breaks=c(-1000,-500,0,500,1000,1500,2000),labels=c("1000 BC", "500 BC", "BC/AD","AD 500", "AD 1000","AD 1500","AD 2000")) +
