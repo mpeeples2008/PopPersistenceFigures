@@ -60,7 +60,7 @@ london <- ggplot(dat.london) +
         panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank(), panel.background=element_blank(),
         axis.line = element_line(color='black', size = 1, linetype = "solid"),
         text=element_text(size=18)) +
-  ggtitle("Londinium/Lundenwic/London") +
+  ggtitle("Londinium/Lundenwic/Lundenburh/London") +
   scale_x_continuous(name="Year", limits=c(0, 1501), breaks=c(0,500,1000,1500),labels=c("BC/AD","AD 500", "AD 1000","AD 1500")) +
   scale_y_continuous(name="Population in Thousands", limits=c(0,100000), breaks=c(0,25000,50000,75000,100000), labels=c(0,25,50,75,100)) +
   geom_segment(aes(x=400, y=5000+30000, xend=400, yend=5000), arrow=arrow(), size=2, color="red1") 
@@ -83,7 +83,7 @@ teo <- ggplot(dat.teo) +
         panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank(), panel.background=element_blank(),
         axis.line = element_line(color='black', size = 1, linetype = "solid"),
         text=element_text(size=18)) +
-  ggtitle("Teotihuacan") +
+  ggtitle("Teotihuacán") +
   scale_x_continuous(name="Year", limits=c(-500, 2021), breaks=c(-500,0,500,1000,1500,2000),labels=c("500 BC", "BC/AD","AD 500", "AD 1000","AD 1500","AD 2000")) +
   scale_y_continuous(name="Population in Thousands", limits=c(0,110000), breaks=c(0,25000,50000,75000,100000), labels=c(0,25,50,75,100)) +
   geom_segment(aes(x=1000, y=24000+30000, xend=1000, yend=24000), arrow=arrow(), size=2, color="red1") + 
@@ -95,7 +95,7 @@ mex <- ggplot(dat.mex) +
         panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank(), panel.background=element_blank(),
         axis.line = element_line(color='black', size = 1, linetype = "solid"),
         text=element_text(size=18)) +
-  ggtitle("Tenochitlan/Mexico City") +
+  ggtitle("Tenochitlán/México City") +
   scale_x_continuous(name="Year", limits=c(1000, 1800), breaks=c(1000,1200,1400,1600,1800),labels=c("AD 1000", "AD 1200", "AD 1400", "AD 1600","AD 1800")) +
   scale_y_continuous(name="Population in Thousands", limits=c(0,250000), breaks=c(0,50000,100000,150000,200000,250000), labels=c(0,50,100,150,200,250)) +
   geom_segment(aes(x=1600, y=24000+75000, xend=1600, yend=24000), arrow=arrow(), size=2, color="red1")  
@@ -110,16 +110,36 @@ mex2 <- ggplot(dat.mex) +
   scale_x_continuous(name="Year", limits=c(1800, 2021), breaks=c(1800,2000),labels=c("AD 1800","AD 2000")) +
   scale_y_continuous(name="Population in Millions", limits=c(0,25000000), breaks=c(0,5000000,10000000,15000000,20000000,25000000), labels=c(0,5,10,15,20,25))
 
-ggsave(filename="Rome.png", plot = rome, width = 220, height = 90, units = c("mm"), dpi = 300)
+ggsave(filename="Rome.png", plot = rome, width = 220, height = 90, units = c("mm"), dpi = 600)
 ggsave(filename="Rome2.png", plot= rome2, width = 80, height= 90, units= c("mm"), dpi=300)
-ggsave(filename="Teo.png", plot = teo, width = 300, height = 90, units = c("mm"), dpi = 300)
-ggsave(filename="London1.png", plot = london, width = 200, height = 90, units = c("mm"), dpi = 300)
-ggsave(filename="London2.png", plot = london2, width = 100, height = 90, units = c("mm"), dpi = 300)
-ggsave(filename="Byzantium1.png", plot = byzantium, width = 220, height = 90, units = c("mm"), dpi = 300)
-ggsave(filename="Byzantium2.png", plot = byzantium2, width = 80, height = 90, units = c("mm"), dpi = 300)
-ggsave(filename="Mex1.png", plot = mex, width = 220, height = 90, units = c("mm"), dpi = 300)
-ggsave(filename="Mex2.png", plot = mex2, width = 80, height = 90, units = c("mm"), dpi = 300)
+ggsave(filename="Teo.png", plot = teo, width = 300, height = 90, units = c("mm"), dpi = 600)
+ggsave(filename="London1.png", plot = london, width = 200, height = 90, units = c("mm"), dpi = 600)
+ggsave(filename="London2.png", plot = london2, width = 100, height = 90, units = c("mm"), dpi = 600)
+ggsave(filename="Byzantium1.png", plot = byzantium, width = 220, height = 90, units = c("mm"), dpi = 600)
+ggsave(filename="Byzantium2.png", plot = byzantium2, width = 80, height = 90, units = c("mm"), dpi = 600)
+ggsave(filename="Mex1.png", plot = mex, width = 220, height = 90, units = c("mm"), dpi = 600)
+ggsave(filename="Mex2.png", plot = mex2, width = 80, height = 90, units = c("mm"), dpi = 600)
 
 
-ggarrange(teo, rome, ggarrange(byzantium,byzantium2,ncol=2,nrow=1), ggarrange(london,london2,ncol=2,nrow=1), mex, ncol = 1, nrow = 5)
+Rome.png <- image_read("Rome.png")
+Rome2.png <- image_read("Rome2.png")
+Teo.png <- image_read("Teo.png")
+London1.png <- image_read("London1.png")
+London2.png <- image_read("London2.png")
+Byzantium1.png <- image_read("Byzantium1.png")
+Byzantium2.png <- image_read("Byzantium2.png")
+Mex1.png <- image_read("Mex1.png")
+Mex2.png <- image_read("Mex2.png")
+
+London_all.png <- image_append(image_scale(c(London1.png,London2.png), "x200"))
+Mex_all.png <- image_append(image_scale(c(Mex1.png,Mex2.png), "x200"))
+Byzantium_all.png <- image_append(image_scale(c(Byzantium1.png,Byzantium2.png), "x200"))
+Rome_all.png <- image_append(image_scale(c(Rome.png,Rome2.png), "x200"))
+Teo_zoom.png <- image_scale(Teo.png, "x200")
+
+
+All.png <- image_append(c(Teo_zoom.png,Mex_all.png,Rome_all.png,Byzantium_all.png,London_all.png), stack=TRUE)
+
+image_write(All.png, path = "All.png", format = "png")
+
 
