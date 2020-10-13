@@ -2,6 +2,7 @@ library(ggplot2)
 library(ggpubr)
 library(scales)
 library(ggformula)
+library(magick)
 
 dat.rome <- read.csv('Rome.csv',header=T)
 dat.london <- read.csv('London.csv',header=T)
