@@ -1,50 +1,49 @@
-Year,Population,
-47,0,Roman numbers are average population estimates from Swain and Williams 2008
-60,9306,Roman numbers are average population estimates from Swain and Williams 2008
-110,25844,Roman numbers are average population estimates from Swain and Williams 2008
-200,30632,Roman numbers are average population estimates from Swain and Williams 2008
-400,0,"""served as a focus for 20sq mi of small towns but virtually uninhabited"""
-500,0,"Vance, Saxson London 1990"
-601,7500,Pope declares London seat of premartial see (Keene 2008:187)
-680,8900,important to Bishop of Kent who did business there
-700,9250,major commercial center
-800,11000,"""commercial London housed between 5000 and 10000 souls"" Keene 2008"
-1066,15000,
-1100,20000,twice as populous as the next town
-1200,40000,minor statement
-1300,80000,five times the next most populous town
-1400,40000,post-plague population (Barron 2008)
-1450,40000,
-1499,40000,
-1501,40000,
-1550,75000,Boulton 2008
-1600,200000,Boulton 2008
-1650,400000,Boulton 2008
-1700,575000,Boulton 2008
-1750,637500,Schwarz 2008
-1760,740000,Schwarz 2008
-1770,811000,Schwarz 2008
-1780,890000,Schwarz 2008
-1801,1096784,Census numbers
-1811,1303564,Census numbers
-1821,1573210,Census numbers
-1831,1878229,Census numbers
-1841,2207653,Census numbers
-1851,2651939,Census numbers
-1861,3188485,Census numbers
-1871,3840595,Census numbers
-1881,4713411,Census numbers
-1891,5571966,Census numbers
-1901,6506889,Census numbers
-1911,7160441,Census numbers
-1921,7386755,Census numbers
-1931,8110358,Census numbers
-1939,8615050,Census numbers
-1951,8196807,Census numbers
-1961,7992443,Census numbers
-1971,7368693,Census numbers
-1981,6608598,Census numbers
-1991,6679699,Census numbers
-2001,7172036,Census numbers
-2011,8173900,Census numbers
-2020,9304000,curren projection
+Year,Population
+47,0
+60,9306
+110,25844
+200,30632
+400,0
+500,0
+601,7500
+680,8000
+700,9000
+800,10000
+1100,20000
+1200,40000
+1300,80000
+1400,40000
+1450,40000
+1499,40000
+1501,40000
+1550,75000
+1600,200000
+1650,400000
+1700,575000
+1750,637500
+1760,740000
+1770,811000
+1780,890000
+1801,1090078
+1811,1294765
+1821,1560419
+1831,1862970
+1841,2185804
+1851,2630782
+1861,3155144
+1871,3840595
+1881,4711456
+1891,5567591
+1901,6506889
+1911,7157729
+1921,7382131
+1931,8098206
+1939,8615050
+1951,8161779
+1961,7975558
+1971,7403534
+1981,6483431
+1991,6679822
+2001,6679822
+2011,8173941
+2020,9304000
