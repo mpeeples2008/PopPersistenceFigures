@@ -111,15 +111,15 @@ mex2 <- ggplot(dat.mex) +
   scale_x_continuous(name="Year", limits=c(1800, 2021), breaks=c(1800,2000),labels=c("AD 1800","AD 2000")) +
   scale_y_continuous(name="Population in Millions", limits=c(0,25000000), breaks=c(0,5000000,10000000,15000000,20000000,25000000), labels=c(0,5,10,15,20,25))
 
-ggsave(filename="Rome.png", plot = rome, width = 220, height = 90, units = c("mm"), dpi = 1200)
-ggsave(filename="Rome2.png", plot= rome2, width = 80, height= 90, units= c("mm"), dpi=1200)
-ggsave(filename="Teo.png", plot = teo, width = 300, height = 90, units = c("mm"), dpi = 1200)
-ggsave(filename="London1.png", plot = london, width = 180, height = 90, units = c("mm"), dpi = 1200)
-ggsave(filename="London2.png", plot = london2, width = 120, height = 90, units = c("mm"), dpi = 1200)
-ggsave(filename="Byzantium1.png", plot = byzantium, width = 220, height = 90, units = c("mm"), dpi = 1200)
-ggsave(filename="Byzantium2.png", plot = byzantium2, width = 80, height = 90, units = c("mm"), dpi = 1200)
-ggsave(filename="Mex1.png", plot = mex, width = 220, height = 90, units = c("mm"), dpi = 1200)
-ggsave(filename="Mex2.png", plot = mex2, width = 80, height = 90, units = c("mm"), dpi = 1200)
+ggsave(filename="Rome.png", plot = rome, width = 220, height = 90, units = c("mm"), dpi = 1000)
+ggsave(filename="Rome2.png", plot= rome2, width = 80, height= 90, units= c("mm"), dpi=1000)
+ggsave(filename="Teo.png", plot = teo, width = 300, height = 90, units = c("mm"), dpi = 1000)
+ggsave(filename="London1.png", plot = london, width = 180, height = 90, units = c("mm"), dpi = 1000)
+ggsave(filename="London2.png", plot = london2, width = 120, height = 90, units = c("mm"), dpi = 1000)
+ggsave(filename="Byzantium1.png", plot = byzantium, width = 220, height = 90, units = c("mm"), dpi = 1000)
+ggsave(filename="Byzantium2.png", plot = byzantium2, width = 80, height = 90, units = c("mm"), dpi = 1000)
+ggsave(filename="Mex1.png", plot = mex, width = 220, height = 90, units = c("mm"), dpi = 1000)
+ggsave(filename="Mex2.png", plot = mex2, width = 80, height = 90, units = c("mm"), dpi = 1000)
 
 
 Rome.png <- image_read("Rome.png")
@@ -132,11 +132,10 @@ Byzantium2.png <- image_read("Byzantium2.png")
 Mex1.png <- image_read("Mex1.png")
 Mex2.png <- image_read("Mex2.png")
 
-London_all.png <- image_append((c(London1.png,London2.png)))
-Mex_all.png <- image_append((c(Mex1.png,Mex2.png)))
-Byzantium_all.png <- image_append((c(Byzantium1.png,Byzantium2.png)))
-Rome_all.png <- image_append((c(Rome.png,Rome2.png)))
-Teo_zoom.png <- image_scale(Teo.png, "x100")
+London_all.png <- image_append(c(London1.png,London2.png))
+Mex_all.png <- image_append(c(Mex1.png,Mex2.png))
+Byzantium_all.png <- image_append(c(Byzantium1.png,Byzantium2.png))
+Rome_all.png <- image_append(c(Rome.png,Rome2.png))
 
 
 All.png <- image_append(c(Teo.png,Mex_all.png,Rome_all.png,Byzantium_all.png,London_all.png), stack=TRUE)
