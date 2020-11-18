@@ -5,16 +5,111 @@ output:
     df_print: paged
 ---
 
-```{r setup}
+
+```r
 library(tidyverse)
+```
+
+```
+## Warning: package 'tidyverse' was built under R version 3.5.3
+```
+
+```
+## -- Attaching packages ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse 1.3.0 --
+```
+
+```
+## v ggplot2 3.3.0     v purrr   0.3.4
+## v tibble  3.0.1     v dplyr   0.8.5
+## v tidyr   1.0.0     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.4.0
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'tibble' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'tidyr' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'readr' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'purrr' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'dplyr' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'stringr' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'forcats' was built under R version 3.5.3
+```
+
+```
+## -- Conflicts ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 library(sf)
+```
+
+```
+## Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1
+```
+
+```r
 library(rnaturalearth)
+```
+
+```
+## Warning: package 'rnaturalearth' was built under R version 3.5.3
+```
+
+```r
 library(ggrepel)
+```
+
+```
+## Warning: package 'ggrepel' was built under R version 3.5.3
+```
+
+```r
 library(rworldmap)
 ```
 
+```
+## Warning: package 'rworldmap' was built under R version 3.5.3
+```
+
+```
+## Loading required package: sp
+```
+
+```
+## ### Welcome to rworldmap ###
+```
+
+```
+## For a short introduction type : 	 vignette('rworldmap')
+```
+
 Import cite locations and clean the data.
-```{r}
+
+```r
 sites <- read_csv('Site_LatLong.csv') %>%
   mutate(site = if_else(Site == 'Tenochitlan/Mexico City', 'Tenochtitlan/Mexico City', Site)) %>%
   mutate(site = if_else(site == 'Elba', 'Ebla', site)) %>%
@@ -29,8 +124,18 @@ sites <- read_csv('Site_LatLong.csv') %>%
   filter(!(site %in% c('Scribe S', 'Sand Canyon Pueblo', 'Cuexcomate', 'Hawwiku', 'Walatowa', 'Byblos', 'Megiddo', 'Anyang', 'Xochicalco', 'Pueblo Bonito', 'Honey Bee Village', 'Calixtlahuaca', 'Tayasal', 'Santa Rita','Caracol')))
 ```
 
+```
+## Parsed with column specification:
+## cols(
+##   Site = col_character(),
+##   Lat = col_double(),
+##   Long = col_double()
+## )
+```
+
 Prepare the world map.
-```{r}
+
+```r
 world_map <- st_as_sf(getMap(resolution = "low"))
 
 crs_goode <- "+proj=igh"
@@ -83,7 +188,8 @@ goode_without <- st_difference(goode_encl_rect, goode_outline)
 ```
 
 Plot the map and save it for patching later.
-```{r, fig.width= 6, fig.height = 3}
+
+```r
 a <- ggplot(world_map) + 
   geom_sf(fill = "lightgray", color = "gray", size = 0.5/.pt) +
   geom_sf(data = goode_without, fill = "white", color = "NA") +
@@ -100,7 +206,8 @@ a <- ggplot(world_map) +
 ```
 
 Import city dates data and preprocess.
-```{r}
+
+```r
 new_dat <- read_csv('CityDatesDraft1 - Sheet1.csv') %>%
   mutate(start = pmin(`Start Occupation`, `Start Peak`, na.rm = TRUE),
          end = pmax(`End Occupation`, `End Peak`, na.rm = TRUE),
@@ -121,8 +228,30 @@ new_dat <- read_csv('CityDatesDraft1 - Sheet1.csv') %>%
          end = if_else(site == 'Teotihuacan', 2020, end))
 ```
 
+```
+## Warning: Missing column names filled in: 'X11' [11]
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   `Site/City` = col_character(),
+##   Region = col_character(),
+##   `Total Duration` = col_double(),
+##   `Peak Duration` = col_double(),
+##   `Start Occupation` = col_double(),
+##   `End Occupation` = col_double(),
+##   `Start Peak` = col_double(),
+##   `End Peak` = col_double(),
+##   Source = col_character(),
+##   Notes = col_character(),
+##   X11 = col_character()
+## )
+```
+
 Plot the city spans and combine with the map using patchwork.
-```{r fig.height=6, fig.width=14}
+
+```r
 b <- ggplot(new_dat, aes(y = reorder(site, -start))) +
 
   theme_minimal() +
@@ -136,8 +265,11 @@ b + annotation_custom(ggplotGrob(a), xmin = -5500, xmax = 0, ymin = 'Kumasi', ym
     geom_point(data = new_dat, aes(x = end, y = site)) +  geom_text(data = new_dat, aes(x = start, label = site), nudge_x = -100, hjust = 1, size = 3.5)
 ```
 
+<img src="Figure1_files/figure-html/unnamed-chunk-5-1.png" width="1344" />
+
 Save thee result.
-```{r}
+
+```r
 ggsave('figure1.png', height = 6, width = 14, dpi = 400)
 ggsave('figure1.pdf', height = 6, width = 14)
 ```
