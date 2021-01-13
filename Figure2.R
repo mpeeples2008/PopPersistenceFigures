@@ -18,8 +18,8 @@ rome <- ggplot(dat.rome) +
         text=element_text(size=18)) +
   ggtitle("Rome") +
   scale_x_continuous(name="Year", limits=c(-800, 1801), breaks=c(-800,-400,0,400,800,1200,1600),labels=c("800 BC", "400 BC", "BC/AD","AD 400", "AD 800","AD 1200","AD 1600")) +
-  scale_y_continuous(name="Population in Millions", oob=squish, limits=c(0, 1200000), breaks=c(0,200000,400000,600000,800000,1000000,1200000), labels=c(0,0.2,0.4,0.6,0.8,1,1.2)) +
-  geom_segment(aes(x=550, y=90000+360000, xend=550, yend=90000), arrow=arrow(), size=2, color="red1")
+  scale_y_continuous(name="Population in Millions", oob=squish, limits=c(0, 1200000), breaks=c(0,200000,400000,600000,800000,1000000,1200000), labels=c(0,0.2,0.4,0.6,0.8,1,1.2)) #+
+  #geom_segment(aes(x=550, y=90000+360000, xend=550, yend=90000), arrow=arrow(), size=2, color="red1")
 
 rome2 <- ggplot(dat.rome) + 
   geom_smooth(aes(x = Year, y = Population), size = 1.5, color='darkblue',span=0.25,se=F) +
@@ -29,8 +29,8 @@ rome2 <- ggplot(dat.rome) +
         text=element_text(size=18)) +
   ggtitle(" ") +
   scale_x_continuous(name="Year", limits=c(1800, 2021), breaks=c(1800,2000),labels=c("AD 1800","AD 2000")) +
-  scale_y_continuous(name="Population in Millions", oob=squish, limits=c(0, 4000000), breaks=c(0,1000000,2000000,3000000,4000000), labels=c(0,1,2,3,4)) +
-  geom_segment(aes(x=550, y=250000+210000, xend=550, yend=250000), arrow=arrow(), size=2, color="red1") 
+  scale_y_continuous(name="Population in Millions", oob=squish, limits=c(0, 4000000), breaks=c(0,1000000,2000000,3000000,4000000), labels=c(0,1,2,3,4)) #+
+  #geom_segment(aes(x=550, y=250000+210000, xend=550, yend=250000), arrow=arrow(), size=2, color="red1") 
 
 byzantium <- ggplot(dat.byz) + 
   geom_smooth(aes(x = Year, y = Population), size = 1.5, color='darkblue',span=0.2,se=F) +
@@ -40,9 +40,9 @@ byzantium <- ggplot(dat.byz) +
         text=element_text(size=18)) +
   ggtitle("Byzantium/Constantinople/Istanbul") +
   scale_x_continuous(name="Year", limits=c(-800, 1801), breaks=c(-800,-400,0,400,800,1200,1600),labels=c("800 BC", "400 BC", "BC/AD","AD 400", "AD 800","AD 1200","AD 1600")) +
-  scale_y_continuous(name="Population in Thousands", limits=c(0, 800000), breaks=c(0,200000,400000,600000,800000), labels=c(0,200,400,600,800)) +
-  geom_segment(aes(x=650, y=110000+210000, xend=650, yend=110000), arrow=arrow(), size=2, color="red1") +
-  geom_segment(aes(x=1425, y=75000+210000, xend=1425, yend=75000), arrow=arrow(), size=2, color="red1") 
+  scale_y_continuous(name="Population in Thousands", limits=c(0, 800000), breaks=c(0,200000,400000,600000,800000), labels=c(0,200,400,600,800)) #+
+  #geom_segment(aes(x=650, y=110000+210000, xend=650, yend=110000), arrow=arrow(), size=2, color="red1") +
+  #geom_segment(aes(x=1425, y=75000+210000, xend=1425, yend=75000), arrow=arrow(), size=2, color="red1") 
 
 
 byzantium2 <- ggplot(dat.byz) + 
@@ -63,8 +63,8 @@ london <- ggplot(dat.london) +
         text=element_text(size=18)) +
   ggtitle("Londinium/Lundenwic/Lundenburh/London") +
   scale_x_continuous(name="Year", limits=c(0, 1501), breaks=c(0,500,1000,1500),labels=c("BC/AD","AD 500", "AD 1000","AD 1500")) +
-  scale_y_continuous(name="Population in Thousands", limits=c(0,100000), breaks=c(0,25000,50000,75000,100000), labels=c(0,25,50,75,100)) +
-  geom_segment(aes(x=400, y=5000+30000, xend=400, yend=5000), arrow=arrow(), size=2, color="red1") 
+  scale_y_continuous(name="Population in Thousands", limits=c(0,100000), breaks=c(0,25000,50000,75000,100000), labels=c(0,25,50,75,100)) #+
+  #geom_segment(aes(x=400, y=5000+30000, xend=400, yend=5000), arrow=arrow(), size=2, color="red1") 
   
 london2 <- ggplot(dat.london) + 
   geom_smooth(aes(x = Year, y = Population), size = 1.5, color='darkblue',span=0.25,se=F) +
@@ -86,9 +86,9 @@ teo <- ggplot(dat.teo) +
         text=element_text(size=18)) +
   ggtitle("Teotihuacán") +
   scale_x_continuous(name="Year", limits=c(-500, 2021), breaks=c(-500,0,500,1000,1500,2000),labels=c("500 BC", "BC/AD","AD 500", "AD 1000","AD 1500","AD 2000")) +
-  scale_y_continuous(name="Population in Thousands", limits=c(0,110000), breaks=c(0,25000,50000,75000,100000), labels=c(0,25,50,75,100)) +
-  geom_segment(aes(x=600, y=29000+30000, xend=600, yend=29000), arrow=arrow(), size=2, color="red1") + 
-  geom_segment(aes(x=1625, y=5000+30000, xend=1625, yend=5000), arrow=arrow(), size=2, color="red1") 
+  scale_y_continuous(name="Population in Thousands", limits=c(0,110000), breaks=c(0,25000,50000,75000,100000), labels=c(0,25,50,75,100)) #+
+  #geom_segment(aes(x=600, y=29000+30000, xend=600, yend=29000), arrow=arrow(), size=2, color="red1") + 
+  #geom_segment(aes(x=1625, y=5000+30000, xend=1625, yend=5000), arrow=arrow(), size=2, color="red1") 
 
 mex <- ggplot(dat.mex) +
   geom_smooth(aes(x = Year, y = Population), size = 1.5, color='darkblue',span=0.25,se=F) +
@@ -98,8 +98,8 @@ mex <- ggplot(dat.mex) +
         text=element_text(size=18)) +
   ggtitle("Tenochitlán/México City") +
   scale_x_continuous(name="Year", limits=c(1000, 1800), breaks=c(1000,1200,1400,1600,1800),labels=c("AD 1000", "AD 1200", "AD 1400", "AD 1600","AD 1800")) +
-  scale_y_continuous(name="Population in Thousands", limits=c(0,250000), breaks=c(0,50000,100000,150000,200000,250000), labels=c(0,50,100,150,200,250)) +
-  geom_segment(aes(x=1600, y=28000+75000, xend=1600, yend=28000), arrow=arrow(), size=2, color="red1")  
+  scale_y_continuous(name="Population in Thousands", limits=c(0,250000), breaks=c(0,50000,100000,150000,200000,250000), labels=c(0,50,100,150,200,250)) #+
+  #geom_segment(aes(x=1600, y=28000+75000, xend=1600, yend=28000), arrow=arrow(), size=2, color="red1")  
   
 mex2 <- ggplot(dat.mex) +
   geom_smooth(aes(x = Year, y = Population), size = 1.5, color='darkblue',span=0.25,se=F) +
