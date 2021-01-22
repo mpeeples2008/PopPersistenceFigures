@@ -4,49 +4,23 @@ library(ggpubr)
 library(scales)
 library(magick)
 
-maya <- read.csv('MayaLongCount.csv')
-
-maya.p <- ggplot(maya, aes(x=YearSpan)) +
-  geom_histogram(binwidth=50) +
-  theme(plot.title = element_text(size=20, face="bold.italic"), panel.grid.major.y = element_line('darkgray', size=0.25), panel.grid.minor.y=element_blank(), 
-        panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank(), panel.background=element_blank(),
-        axis.line = element_line(color='black', size = 1, linetype = "solid"),
-        text=element_text(size=18)) +
-  geom_vline(aes(xintercept=mean(YearSpan)), color='red', size=1) +
-  geom_vline(aes(xintercept=mean(YearSpan)+(1*sd(YearSpan))), color='blue', linetype='dashed', size=1) +
-  ggtitle("Maya Long Count Dates") +
-  scale_x_continuous(name="Years") +
-  scale_y_continuous(name="Count") 
-
-
-sw <- read.csv('occ.csv')
-sw$occ <- sw$end-sw$begin
-
-sw.p <- ggplot(sw, aes(x=occ)) +
-  geom_histogram(binwidth=50) +
-  theme(plot.title = element_text(size=20, face="bold.italic"), panel.grid.major.y = element_line('darkgray', size=0.25), panel.grid.minor.y=element_blank(), 
-        panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank(), panel.background=element_blank(),
-        axis.line = element_line(color='black', size = 1, linetype = "solid"),
-        text=element_text(size=18)) +
-  geom_vline(aes(xintercept=mean(occ)), color='red', size=1) +
-  geom_vline(aes(xintercept=mean(occ)+(1*sd(occ))), color='blue', linetype='dashed', size=1) +
-  ggtitle("U.S. Southwest Settlements") +
-  scale_x_continuous(name="Years") +
-  scale_y_continuous(name="Count") 
-
 bm <- read.csv('BoMOccLengths.csv')
+bm <- read.csv('BoMSpans5Ways.csv')
 
-bm.p <- ggplot(bm, aes(x=TeoOnly)) +
+bm.p <- ggplot(bm, aes(x=Half.Period)) +
   geom_histogram(binwidth=200) +
   theme(plot.title = element_text(size=20, face="bold.italic"), panel.grid.major.y = element_line('darkgray', size=0.25), panel.grid.minor.y=element_blank(), 
         panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank(), panel.background=element_blank(),
         axis.line = element_line(color='black', size = 1, linetype = "solid"),
-        text=element_text(size=18)) +
-  geom_vline(aes(xintercept=mean(TeoOnly, na.rm=T)), color='red', size=1) +
-  geom_vline(aes(xintercept=mean(TeoOnly, na.rm=T)+(1*sd(TeoOnly, na.rm=T))), color='blue', linetype='dashed', size=1) +
-  ggtitle("Basin of Mexico Settlements") +
-  scale_x_continuous(name="Years") +
-  scale_y_continuous(name="Count") 
+        text=element_text(size=20)) +
+  geom_vline(aes(xintercept=mean(Half.Period, na.rm=T)), color='red', size=1) +
+  geom_vline(aes(xintercept=median(Half.Period, na.rm=T)), color='blue', linetype='dashed', size=1) +
+  ggtitle("Basin of Mexico") +
+  scale_x_continuous(name="Years",limits = c(0,3100)) +
+  scale_y_continuous(name="Count") +
+  annotate('text',x=2700,y=1625, label='median = 185',size=5, col='blue') +
+  annotate('text',x=2750,y=1550, label='mean = 298',size=5, col='red')
+
 
 rome <- read.csv('RomanOccupationLengths.csv')
 
@@ -55,27 +29,22 @@ rome.p <- ggplot(rome, aes(x=OccLength)) +
   theme(plot.title = element_text(size=20, face="bold.italic"), panel.grid.major.y = element_line('darkgray', size=0.25), panel.grid.minor.y=element_blank(), 
         panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank(), panel.background=element_blank(),
         axis.line = element_line(color='black', size = 1, linetype = "solid"),
-        text=element_text(size=18)) +
+        text=element_text(size=20)) +
   geom_vline(aes(xintercept=mean(OccLength, na.rm=T)), color='red', size=1) +
-  geom_vline(aes(xintercept=mean(OccLength, na.rm=T)+(1*sd(OccLength, na.rm=T))), color='blue', linetype='dashed', size=1) +
-  ggtitle("Roman Settlements - Central Italy") +
+  geom_vline(aes(xintercept=median(OccLength, na.rm=T)), color='blue', linetype='dashed', size=1) +
+  ggtitle("Central Italy") +
   scale_x_continuous(name="Years") +
-  scale_y_continuous(name="Count") 
+  scale_y_continuous(name="Count") +
+  annotate('text',x=1625,y=4200, label='mean = 307',size=5, col='red') +
+  annotate('text',x=1600,y=4400, label='median = 230',size=5, col='blue')
 
 
-ggsave(filename="maya.png", plot = maya.p, width = 300, height = 300, units = c("mm"), dpi = 1000)
-ggsave(filename="sw.png", plot= sw.p, width = 300, height= 300, units= c("mm"), dpi=1000)
-ggsave(filename="bm.png", plot = bm.p, width = 300, height = 300, units = c("mm"), dpi = 1000)
-ggsave(filename="rome_p.png", plot = rome.p, width = 300, height = 300, units = c("mm"), dpi = 1000)
+ggsave(filename="bm.png", plot = bm.p, width = 150, height = 150, units = c("mm"), dpi = 1000)
+ggsave(filename="rome_p.png", plot = rome.p, width = 150, height = 150, units = c("mm"), dpi = 1000)
 
-maya.png <- image_read("maya.png")
-sw.png <- image_read("sw.png")
 bm.png <- image_read("bm.png")
 rome_p.png <- image_read("rome_p.png")
 
-layer1 <- image_append(c(maya.png,bm.png))
-layer2 <- image_append(c(rome_p.png,sw.png))
-
-All_hist.png <- image_append(c(layer1, layer2), stack=TRUE)
+All_hist.png <- image_append(c(bm.png,rome_p.png))
 image_write(All_hist.png, path = "All_hist.png", format = "png")
 
